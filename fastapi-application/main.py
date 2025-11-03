@@ -7,7 +7,7 @@ from api import router as api_router
 
 
 app = FastAPI(
-    title="Example-Base-App",
+    title="Fastapi-Users",
     default_response_class=ORJSONResponse,
     lifespan=lifespan,
 )
