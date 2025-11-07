@@ -21,3 +21,10 @@ router.include_router(
 router.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
 )
+
+
+# /request-verify-token
+# /verify
+router.include_router(
+    fastapi_users.get_verify_router(UserRead),
+)
