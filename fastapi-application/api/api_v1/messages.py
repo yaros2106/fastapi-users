@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
@@ -22,7 +24,10 @@ class MessageResponse(BaseModel):
 
 @router.get("", response_model=MessageResponse)
 def get_user_messages(
-    user: User = Depends(current_active_user),
+    user: Annotated[
+        User,
+        Depends(current_active_user),
+    ],
 ):
     return MessageResponse(
         messages=["m1", "m2", "m3", "m4"],
@@ -35,7 +40,10 @@ def get_user_messages(
     response_model=MessageResponse,
 )
 def get_superuser_messages(
-    user: User = Depends(current_active_superuser),
+    user: Annotated[
+        User,
+        Depends(current_active_superuser),
+    ],
 ):
     return {
         "messages": ["secret-m1", "secret-m2", "secret-m3", "secret-m4"],
